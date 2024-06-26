@@ -13,5 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (linkElement) {
             linkElement.classList.add('active');
         }
-    }
+    }    
 });
+
+

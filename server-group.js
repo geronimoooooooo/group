@@ -20,16 +20,28 @@ app.use(express.urlencoded({ extended: true })); // for form data
 
 // Middleware
 app.use("/", (req, res, next) => {
-  console.log(`Request received at ${new Date()}`);
+  logger.info(`Request received`)  
   next();
 });
 
 app.get('/', (req, res) => {
   let textIntro ="some text";
   let xml = "<root><person><name>John</name></person></root>";
-  logger.info("/ " + new Date())
+  // logger.info("/ " + new Date())
   res.render("index",{textIntro, xml});
 });
+
+app.get('/activities-list', (req, res)=>{
+  res.render('activities-list');
+})
+
+app.get('/activity-create', (req, res)=>{
+  res.render('activity-create');
+})
+
+app.get('/character-create', (req, res)=>{
+  res.render('character-create');
+})
 
 //#region WEBSERVER
 //#region https
