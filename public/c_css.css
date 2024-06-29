@@ -21,4 +21,19 @@
 the header and the footer. This pushes the footer to the bottom when there isn't enough content to do so naturally.*/
 main {
   flex: 1;
+  box-sizing: border-box;
+}
+
+
+.span12{
+  border:solid 2px black;
+  background-color:grey;  
+  } 
+
+.corners2 {
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px; 
+  width: 200px;
+  height: 150px;  
 }

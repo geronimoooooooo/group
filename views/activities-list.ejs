@@ -8,8 +8,86 @@
     <nav><%- include ('partials/nav') %></nav>
     <main>    
       <p class="pt-5 pb-5">available activities</p> 
-      <p>abadf</p>
       
+
+      <div id="activities" >
+        <% arrActivities.forEach((activity)=>{ %>
+        <div class="text-start mb-lg-3 border border-primary">
+          <p>Some dungeon text here</p>
+          <div class="row">
+            <div class="col-1 colorGreen">ID</div>
+            <div class="col-1"><%= activity.id %></div>
+          </div>
+          <div class="row">
+            <div class="col-1 colorGreen">Server</div>
+            <div class="col-1"><%= activity.server %></div>
+          </div>
+          <div class="row">
+            <div class="col-1 colorGreen">Faction</div>
+            <div class="col-1"><%= activity.faction %></div>   
+          </div>
+          <div class="row">
+            <div class="col-sm-1 colorGreen">Typ</div>
+            <div class="col-sm-1"><%= activity.activityType %></div>
+          </div>
+          <div class="row">
+            <div class="col-1 colorGreen">Name</div>
+            <div class="col-1 "><%= activity.name %></div>            
+          </div>
+          <div class="row">            
+            <div class="col-1 colorGreen">Date</div>
+            <div class="col-2"><%= activity.date %></div>      
+          </div>
+          <div class="row">            
+            <div class="col-1 colorGreen">Descripton</div>
+            <div class="col-2"><%= activity.description %></div>      
+          </div>
+          <div class="row">            
+            <div class="col-1 colorGreen">Tank</div>
+            <div class="col-2"><%= activity.chars.tank.name%></div>      
+          </div>
+          <div class="row">            
+            <div class="col-1 colorGreen">Healer</div>
+            <div class="col-2"><%= activity.chars.healer.name%></div>      
+          </div>
+          <div class="row">            
+            <div class="col-1 colorGreen">DD1</div>
+            <% if(activity.chars.dd1.id == undefined){%>
+              <div class="col-2"> <button type="button"  class="btn btn-primary">join</button>
+                
+              </div>      
+              <%}else{%>
+                <div class="col-2"><%= activity.chars.dd1.name%></div>   
+                <%}%>            
+          </div>
+          <div class="row">            
+            <div class="col-1 colorGreen">DD2</div>
+            <% if(activity.chars.dd2.id == undefined){%>
+              <div class="col-2"><a class="btn btn-primary btn-sm " href="#" role="button">join </a>
+                <form action="/join/dd2" method="post">
+                  <input type="hidden" name="value" value="<%=`${activity.description}-dd2`%>">
+                  <button type="submit">Click me!</button>
+                </form>
+              </div>      
+              <%}else{%>
+                <div class="col-2"><%= activity.chars.dd2.name%></div>   
+                <%}%>            
+          </div>
+          <div class="row">            
+            <div class="col-1 colorGreen">DD3</div>
+            <% if(activity.chars.dd3 == undefined){%>
+              <div class="col-2"><a class="btn btn-primary btn-sm " href="#" role="button">join </a>
+               
+              </div>      
+              <%}else{%>
+                <div class="col-2"><%= activity.chars.dd3.name%></div>   
+                <%}%>            
+          </div>
+
+        </div>
+        <%})%>
+      </div>
+
     </main>      
     <footer><%- include('partials/footer') %></footer>
     <script src="j_js.js"></script>

@@ -5,6 +5,9 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { logger } from "./util/logger.js";
+import Character from './character.js';
+import e from "express";
+
 
 const app = express();
 // Replicate __filename and __dirname
@@ -24,15 +27,83 @@ app.use("/", (req, res, next) => {
   next();
 });
 
+app.post('/join/dd2', (req, res)=> {
+  console.log(req.body);
+  const { value } = req.body;
+  console.log(`Received value: ${value}`);
+  // process the value and return a response
+  res.send(`You sent: ${value}`);
+})
+
+app.post('/submit', (req, res) => {
+  let tank = new Character(2,"bro", "tank");
+  let healer = new Character(2,"healername", "healer");
+  let dd1 = new Character();
+  let dd2 = new Character();
+  let dd3 = new Character()
+  dd3 = new Character(44,"dd3", "dd");
+  
+  let arrChars = []
+  arrChars.push(tank);
+  arrChars.push(healer);
+  console.log(arrChars.find((e)=>e.role =="tank"));
+  const formData = req.body;
+  const data = {
+      id: 12,
+      server: formData.server,
+      faction: formData.faction,
+      activityType: formData.typ,
+      name: formData.name,
+      lvl: 60,
+      description: formData.description,
+      // chars : arrChars
+      chars: {tank: tank, healer: healer, dd1:dd1, dd2:dd2, dd3:dd3}
+  };
+  console.log(data);
+  console.log(data.chars.tank.name);
+  arrActivities.push(data);
+  // res.json(data);
+  res.render('activities-list',{arrActivities});
+});
+
 app.get('/', (req, res) => {
   let textIntro ="some text";
   let xml = "<root><person><name>John</name></person></root>";
   // logger.info("/ " + new Date())
+  let now = new Date()
+  let year = now.getFullYear()
+  let month = now.getMonth() + 1
+  let date = now.getDate()
+  let hours = now.getHours()
+  let minutes = now.getMinutes()
+  if (hours < 10) {
+    hours = '0' + hours
+  }
+  if (minutes < 10) {
+    minutes = '0' + minutes
+  }
+
+  let dateMonthYear = date + '.' + month + '.' + year
+  let time = hours + ':' + minutes
+  let fullTime = dateMonthYear + ' ' + time
+  console.log(fullTime);
+
   res.render("index",{textIntro, xml});
 });
+let arrActivities = [];
 
 app.get('/activities-list', (req, res)=>{
-  res.render('activities-list');
+  let activity = {
+    id: 1,
+    server: "Vekrash",
+    faction: "Horde",
+    activityType: "Dungeon",
+    name: "HDW",
+    lvl: 60,
+    date: new Date().toISOString()
+  }
+  
+  res.render('activities-list', {arrActivities});
 })
 
 app.get('/activity-create', (req, res)=>{

@@ -6,7 +6,52 @@
     <header><%- include ('partials/header') %></header>  
     <nav><%- include ('partials/nav') %></nav>
     <main>    
-     <p class="pt">You can create here some activities... for you and your friends.</p>        
+     <p class="pt">You can create here some activities... for you and your friends.</p>     
+     
+     <div class="container">
+      <div class="row">
+          <div class="col-md-6 offset-md-3">
+              <h1 class="text-center mb-4">Form Example</h1>
+              <form action="/submit" id="myForm" method="post">
+                  <div class="mb-3">
+                      <label for="server" class="form-label">Server</label>
+                      <input type="text" class="form-control" id="server" name="server2">
+                  </div>
+                  <div class="mb-3">
+                      <label for="faction" class="form-label">Faction</label>
+                      <input type="text" class="form-control" id="faction" name="faction2">
+                  </div>
+                  <div class="mb-3">
+                    <label for="server" class="form-label">Server</label>
+                    <select class="form-select" id="server" name="server">
+                        <option value="Server 1">Server 1</option>
+                        <option value="Server 2">Server 2</option>
+                        <option value="Server 3">Server 3</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="faction" class="form-label">Faction</label>
+                    <select class="form-select" id="faction" name="faction">
+                        <option value="horde">Horde</option>
+                        <option value="alliance">Alliance</option>
+                    </select>
+                </div>
+                  <div class="mb-3">
+                      <label for="typ" class="form-label">Type</label>
+                      <input type="text" class="form-control" id="typ" name="typ">
+                  </div>
+                  <div class="mb-3">
+                      <label for="name" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="name" name="name">
+                  </div>
+                  <div class="mb-3">
+                      <label for="description" class="form-label">Description</label>
+                      <input type="text" class="form-control" id="description" name="description">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+          </div>
+      </div>
       
     </main>      
     <footer><%- include('partials/footer') %></footer>
